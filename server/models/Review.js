@@ -13,14 +13,17 @@ const suggestionSchema = new mongoose.Schema({
 });
 
 const reviewSchema = new mongoose.Schema({
-  url: String,
+  url: { type: String, required: true, unique: true },
   score: Number,
-  issues: [issueSchema],
-  suggestions: [suggestionSchema],
-  createdAt: {
+  issues: Array,
+  suggestions: Array,
+  expiresAt: {
     type: Date,
-    default: Date.now
-  }
-});
+    default: () => new Date(Date.now() + 24 * 60 * 60 * 1000), // 24h
+  },
+}, { timestamps: true });
+
+// Auto-delete after expiry
+reviewSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
 export default mongoose.model("Review", reviewSchema);

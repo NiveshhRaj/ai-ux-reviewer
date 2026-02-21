@@ -1,0 +1,6 @@
+{"error":"url is not defined","level":"error","message":"Unhandled error","timestamp":"2026-02-21T12:39:54.167Z"}
+{"error":"url is not defined","level":"error","message":"Unhandled error","timestamp":"2026-02-21T12:42:51.336Z"}
+{"error":"Request failed with status code 403","level":"error","message":"Review generation failed","timestamp":"2026-02-21T12:45:20.602Z"}
+{"error":"connect ETIMEDOUT 13.127.247.216:443","level":"error","message":"Review generation failed","timestamp":"2026-02-21T12:45:53.104Z"}
+{"error":"connect ETIMEDOUT 13.127.247.216:443","level":"error","message":"Review generation failed","timestamp":"2026-02-21T12:47:58.638Z"}
+{"error":"connect ETIMEDOUT 212.56.221.63:443","level":"error","message":"Review generation failed","timestamp":"2026-02-21T12:49:44.305Z"}

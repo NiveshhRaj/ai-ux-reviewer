@@ -1,0 +1,48 @@
+{"level":"info","message":"MongoDB connected","timestamp":"2026-02-21T12:32:34.250Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-02-21T12:32:34.264Z"}
+{"level":"info","message":"MongoDB connected","timestamp":"2026-02-21T12:35:58.021Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-02-21T12:35:58.036Z"}
+{"level":"info","message":"MongoDB connected","timestamp":"2026-02-21T12:39:46.471Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-02-21T12:39:46.485Z"}
+{"error":"url is not defined","level":"error","message":"Unhandled error","timestamp":"2026-02-21T12:39:54.167Z"}
+{"error":"url is not defined","level":"error","message":"Unhandled error","timestamp":"2026-02-21T12:42:51.336Z"}
+{"level":"info","message":"MongoDB connected","timestamp":"2026-02-21T12:44:50.182Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-02-21T12:44:50.194Z"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:44:57.924Z","url":"stripe.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T12:44:58.073Z","url":"stripe.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:45:11.847Z","url":"stripe.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T12:45:12.004Z","url":"stripe.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:45:13.213Z","url":"stripe.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T12:45:13.435Z","url":"stripe.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:45:13.440Z","url":"stripe.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T12:45:13.528Z","url":"stripe.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:45:20.229Z","url":"medium.com"}
+{"level":"info","message":"Scraping URL","timestamp":"2026-02-21T12:45:20.383Z","url":"https://medium.com"}
+{"error":"Request failed with status code 403","level":"error","message":"Review generation failed","timestamp":"2026-02-21T12:45:20.602Z"}
+{"error":"connect ETIMEDOUT 13.127.247.216:443","level":"error","message":"Review generation failed","timestamp":"2026-02-21T12:45:53.104Z"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:46:03.916Z","url":"stripe.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T12:46:04.108Z","url":"stripe.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:46:57.283Z","url":"example.com"}
+{"level":"info","message":"Scraping URL","timestamp":"2026-02-21T12:46:57.455Z","url":"https://example.com"}
+{"level":"info","message":"Calling LLM for UX review","timestamp":"2026-02-21T12:46:57.689Z"}
+{"level":"info","message":"LLM response received","timestamp":"2026-02-21T12:47:18.053Z"}
+{"level":"info","message":"Review generated successfully","timestamp":"2026-02-21T12:47:18.243Z","url":"example.com"}
+{"error":"connect ETIMEDOUT 13.127.247.216:443","level":"error","message":"Review generation failed","timestamp":"2026-02-21T12:47:58.638Z"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:48:19.902Z","url":"gmail.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T12:48:19.991Z","url":"gmail.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:48:40.736Z","url":"stripe.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T12:48:40.881Z","url":"stripe.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:49:22.714Z","url":"suntv.com"}
+{"level":"info","message":"Scraping URL","timestamp":"2026-02-21T12:49:22.859Z","url":"https://suntv.com"}
+{"error":"connect ETIMEDOUT 212.56.221.63:443","level":"error","message":"Review generation failed","timestamp":"2026-02-21T12:49:44.305Z"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:52:31.383Z","url":"instagram.com"}
+{"level":"info","message":"Scraping URL","timestamp":"2026-02-21T12:52:31.577Z","url":"https://instagram.com"}
+{"level":"info","message":"Calling LLM for UX review","timestamp":"2026-02-21T12:52:32.913Z"}
+{"level":"info","message":"LLM response received","timestamp":"2026-02-21T12:52:48.070Z"}
+{"level":"info","message":"Review generated successfully","timestamp":"2026-02-21T12:52:48.167Z","url":"instagram.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T12:59:33.780Z","url":"instagram.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T12:59:33.972Z","url":"instagram.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T13:03:18.488Z","url":"gmail.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T13:03:18.536Z","url":"gmail.com"}
+{"level":"info","message":"Incoming review request","timestamp":"2026-02-21T13:06:57.247Z","url":"instagram.com"}
+{"level":"info","message":"Returning cached review","timestamp":"2026-02-21T13:06:57.299Z","url":"instagram.com"}

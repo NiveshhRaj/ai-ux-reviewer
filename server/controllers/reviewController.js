@@ -1,4 +1,5 @@
 import Review from "../models/Review.js";
+import { logger } from "../utils/logger.js";
 import { scrapeWebsite } from "../utils/scraper.js";
 import { generateUXReview } from "../utils/llm.js";
 
@@ -6,35 +7,37 @@ export const createReview = async (req, res) => {
   try {
     const { url } = req.body;
 
-    console.log("Incoming URL:", url);
-
     if (!url) {
-      return res.status(400).json({ message: "URL required" });
+      return res.status(400).json({ message: "URL is required" });
+    }
+
+    logger.info("Incoming review request", { url });
+
+    // Caching
+    const existing = await Review.findOne({ url });
+    if (existing) {
+      logger.info("Returning cached review", { url });
+      return res.json(existing);
     }
 
     const content = await scrapeWebsite(url);
-    console.log("Scraped content:", content.title);
+    const review = await generateUXReview(content);
 
-    const aiResult = await generateUXReview(content);
-    console.log("AI Result:", aiResult);
-
-    const review = await Review.create({
+    const saved = await Review.create({
       url,
-      score: aiResult.score,
-      issues: aiResult.issues,
-      suggestions: aiResult.suggestions
+      score: review.score,
+      issues: review.issues,
+      suggestions: review.suggestions
     });
 
-    res.json(review);
+    logger.info("Review generated successfully", { url });
+
+    res.json(saved);
 
   } catch (err) {
-  console.error("FULL ERROR:", err.message);
-
-  res.status(500).json({
-    message: err.message || "Error generating review",
-  });
-}
-
+    logger.error("Review generation failed", { error: err.message });
+    res.status(500).json({ message: err.message });
+  }
 };
 
 

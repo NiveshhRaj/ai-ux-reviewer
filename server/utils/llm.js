@@ -1,20 +1,39 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { logger } from "./logger.js";
 
-export const generateUXReview = async (content) => {
+/**
+ * Safely extract JSON from model output
+ */
+function extractJSON(text) {
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-
-    if (!apiKey) {
-      throw new Error("Gemini API key not found in environment variables");
+    const jsonStart = text.indexOf("{");
+    const jsonEnd = text.lastIndexOf("}");
+    if (jsonStart === -1 || jsonEnd === -1) {
+      throw new Error("No JSON detected in LLM response");
     }
 
-    const genAI = new GoogleGenerativeAI(apiKey);
+    const cleaned = text.substring(jsonStart, jsonEnd + 1);
+    return JSON.parse(cleaned);
+  } catch (err) {
+    logger.error("JSON parsing failed", { error: err.message });
+    throw new Error("Invalid JSON returned by LLM");
+  }
+}
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
-    });
+async function callModel(content) {
+  const apiKey = process.env.GEMINI_API_KEY;
 
-    const prompt = `
+  if (!apiKey) {
+    throw new Error("GEMINI_API_KEY not configured");
+  }
+
+  const genAI = new GoogleGenerativeAI(apiKey);
+
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.5-flash",
+  });
+
+  const prompt = `
 You are a senior UX auditor.
 
 Analyze the website content below and generate:
@@ -41,17 +60,31 @@ Website Content:
 ${JSON.stringify(content)}
 `;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+  const result = await model.generateContent(prompt);
+  const text = result.response.text();
 
-    const jsonStart = text.indexOf("{");
-    const jsonEnd = text.lastIndexOf("}");
-    const cleaned = text.substring(jsonStart, jsonEnd + 1);
+  logger.info("LLM response received");
 
-    return JSON.parse(cleaned);
+  return extractJSON(text);
+}
+
+export async function generateUXReview(content, retries = 2) {
+  try {
+    logger.info("Calling LLM for UX review");
+
+    return await callModel(content);
 
   } catch (error) {
-    console.error("LLM Error:", error.message);
-    throw new Error("Failed to generate UX review");
+    logger.error("LLM call failed", {
+      error: error.message,
+      retriesLeft: retries,
+    });
+
+    if (retries > 0) {
+      logger.info("Retrying LLM call");
+      return generateUXReview(content, retries - 1);
+    }
+
+    throw new Error("Failed to generate UX review after retries");
   }
-};
+}
